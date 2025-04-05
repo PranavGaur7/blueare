@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <assert.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>

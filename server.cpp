@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <errno.h>
+#include <assert.h>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -33,7 +34,28 @@ static int32_t one_request(int connfd){
     uint32_t len = 0;
     memcpy(&len,rbuf,4);
 
-    if(len> )
+    if(len> k_max_msg){
+        msg("too long");
+        return -1;
+    }
+
+    // request body
+
+    err = read_full(connfd,&rbuf[4],k_max_msg);
+
+    if(err){
+        msg("read() error");
+        return -1;
+    }
+    //  do something
+    printf("client says: %.*s\n",len,&rbuf[4]);
+    // reply using smae protocol
+    const char reply[] = "world";
+    char wbuf[4 + sizeof(reply)];
+    len = (uint32_t)strlen(reply);
+    memcpy(wbuf,&len,4);
+    memcpy(&wbuf[4],reply,len);
+    write_full(connfd,wbuf,len+4);
 }
 
 static void do_something(int connfd)
