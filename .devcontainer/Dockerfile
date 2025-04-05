@@ -1,7 +1,7 @@
-# Use an official base image (you can choose one depending on your needs)
+# Use an official base image with Ubuntu
 FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu
 
-# Install flex and bison
+# Install essential tools for C/C++ development
 RUN apt-get update && \
-    apt-get install -y flex bison && \
+    apt-get install -y build-essential gdb cmake flex bison && \
     apt-get clean
