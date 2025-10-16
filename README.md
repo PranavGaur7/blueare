@@ -74,6 +74,9 @@ $ ./client ZQUERY myz 1.0 "" 0 10
 ```
 git clone https://github.com/PranavGaur7/blueare.git
 cd blueare
+mkdir build
+cd build
+cmake ..
 make
 # start server:
 ./server
