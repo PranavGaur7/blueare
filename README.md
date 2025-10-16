@@ -82,6 +82,11 @@ make
 ./server
 # in another shell, run client:
 ./client SET key value
+
+# or if it not works then
+./bin/server
+# in another shell, run client:
+./bin/client SET key value
 ```
 
 ## ✅ Tests
